@@ -1,6 +1,6 @@
 # Finance Dashboard UI
 
-Frontend-only finance dashboard built for the assignment brief. The project uses plain JavaScript modules, SVG-based charts, and mock data so it can run without a backend or third-party libraries.
+Frontend-only finance dashboard built for the assignment brief. The project is now implemented with React, Vite, Tailwind CSS, and JavaScript, while still using mock data and no backend.
 
 ## What it includes
 
@@ -12,19 +12,16 @@ Frontend-only finance dashboard built for the assignment brief. The project uses
   - `Viewer` can explore data only
   - `Admin` can add new transactions and edit existing ones
 - Insights section with highest-spend category, month-over-month comparison, and savings posture
-- Local state management with a small store module and `localStorage` persistence for role and transactions
-- Responsive layout and empty-state handling
+- Local state management with React hooks, a reducer-based store pattern, and `localStorage` persistence
+- Responsive layout, empty states, richer motion, and a light/dark theme toggle
 
 ## Project structure
 
-- `index.html`: app shell
-- `styles.css`: responsive styling and motion
-- `src/data.js`: seed data, role metadata, and categories
-- `src/store.js`: application state and persistence
-- `src/utils.js`: formatting, filtering, summaries, and insights
-- `src/charts.js`: SVG chart rendering helpers
-- `src/app.js`: UI rendering and event wiring
-- `server.js`: minimal static file server
+- `index.html`: Vite entry shell
+- `vite.config.js`: Vite + React configuration
+- `src/main.jsx`: React app bootstrap
+- `src/App.jsx`: dashboard components, reducer state, charts, filtering, insights, and role-based behavior
+- `src/index.css`: Tailwind import plus a small amount of global theming and animation CSS
 
 ## Run locally
 
@@ -35,18 +32,19 @@ Frontend-only finance dashboard built for the assignment brief. The project uses
 npm run dev
 ```
 
-3. Open `http://localhost:3000`
+3. Open the local URL shown by Vite, typically `http://localhost:5173`
 
 ## Approach
 
-The dashboard is built around a single shared frontend state object. Transactions, filters, and the selected role all feed the same render flow:
+The dashboard is built around a reducer-driven React state flow. Transactions, filters, theme, editor state, and the selected role all feed the same render path:
 
 - Summary cards, charts, and insights derive from transaction state
-- Filter controls affect the transaction table view
+- Filter controls affect the transaction table immediately
 - Role switching changes which actions and panels are available
 - Admin edits update the same local data source and instantly refresh all views
+- Theme preference and transactions persist with `localStorage`
 
-I chose a dependency-free implementation to keep the submission easy to review in an empty workspace while still showing modular structure, predictable state updates, and reusable helpers.
+I chose React + Tailwind so the submission clearly demonstrates component-based frontend development, hook-driven state management, reusable UI structure, and responsive styling in a modern stack.
 
 ## Requirement mapping
 
@@ -54,8 +52,8 @@ I chose a dependency-free implementation to keep the submission easy to review i
 - `Transactions Section`: date, amount, category, type, search, filter, sort
 - `Basic Role Based UI`: dropdown role switcher with viewer and admin behavior
 - `Insights Section`: top category, monthly comparison, savings observation
-- `State Management`: centralized store with subscriptions and persistence
-- `UI/UX`: responsive layout, readable hierarchy, subtle animation, graceful empty states
+- `State Management`: reducer-based React state with persistence
+- `UI/UX`: responsive layout, readable hierarchy, subtle animation, graceful empty states, and theme support
 
 ## Assumptions
 

@@ -1,0 +1,10 @@
+{
+  "name": "finance-dashboard-ui",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Frontend-only finance dashboard assignment",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  }
+}
